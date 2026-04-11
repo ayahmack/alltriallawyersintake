@@ -704,13 +704,12 @@
       </div>
     </div>
 
-    <!-- Internal Staff Section (hidden from clients in production — style display:none or move to admin view) -->
-    <!--
+    <!-- Staff Only Section -->
     <div class="section" style="border: 1px dashed #d1d5db; background: #fffbeb;">
-      <div class="section-title" style="color: #b45309;">Internal Use Only — Staff Fields</div>
+      <div class="section-title" style="color: #b45309;">&#128274; For Staff Only — Do Not Share With Client</div>
       <div class="two-col">
         <div class="field">
-          <label>Case Priority</label>
+          <label style="color: #92400e;">Case Priority</label>
           <select name="staff_priority">
             <option value="">--</option>
             <option>High</option>
@@ -719,16 +718,27 @@
           </select>
         </div>
         <div class="field">
-          <label>Assigned To</label>
+          <label style="color: #92400e;">Assigned To</label>
           <input type="text" name="staff_assigned" placeholder="Attorney / Paralegal name">
         </div>
       </div>
       <div class="field">
-        <label>Follow-Up Date</label>
+        <label style="color: #92400e;">Follow-Up Date</label>
         <input type="date" name="staff_followup">
       </div>
+      <div class="field">
+        <label style="color: #92400e;">Was the client quoted a fee?</label>
+        <select name="staff_quoted" id="staffQuoted" onchange="toggleQuoteAmount(this.value)">
+          <option value="">--</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+      <div class="field" id="quoteAmountField" style="display:none;">
+        <label style="color: #92400e;">Amount quoted to client</label>
+        <input type="text" name="staff_quote_amount" placeholder="e.g. $2,500 flat fee, $500 retainer...">
+      </div>
     </div>
-    -->
 
     <button type="submit" class="submit-btn">Submit Intake Form &rarr;</button>
 
@@ -745,6 +755,11 @@
 </div>
 
 <script>
+  function toggleQuoteAmount(val) {
+    var field = document.getElementById('quoteAmountField');
+    if (field) field.style.display = (val === 'yes') ? 'block' : 'none';
+  }
+
   function showCaseSection(val) {
     ['pi', 'cd', 'jd'].forEach(function(s) {
       var el = document.getElementById('sec-' + s);
@@ -777,7 +792,14 @@
     btn.textContent = 'Submitting…';
     btn.disabled = true;
 
-    var data = new FormData(form);
+    // Build FormData but skip any empty fields so email is clean
+    var rawData = new FormData(form);
+    var data = new FormData();
+    rawData.forEach(function(value, key) {
+      if (value && value.toString().trim() !== '') {
+        data.append(key, value);
+      }
+    });
 
     fetch('https://formspree.io/f/mnjoewnr', {
       method: 'POST',
