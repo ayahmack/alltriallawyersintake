@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Client Intake Form | All Trial Lawyers</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f3f4f6;
+      color: #1a1a1a;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .form-wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 2rem 1rem 5rem;
+    }
+
+    /* Header */
+    .form-header {
+      background: #1a2744;
+      color: #fff;
+      border-radius: 12px;
+      padding: 2.25rem 2rem 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+    .form-header h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.3px;
+    }
+    .form-header p {
+      font-size: 14px;
+      opacity: 0.78;
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    /* Sections */
+    .section {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6b7280;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* Fields */
+    .field { margin-bottom: 1.1rem; }
+    .field:last-child { margin-bottom: 0; }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: #111827;
+      margin-bottom: 0.35rem;
+    }
+    label .req { color: #c0392b; margin-left: 2px; font-weight: 400; }
+    label .hint {
+      font-weight: 400;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-left: 6px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    input[type=date],
+    input[type=time],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: #fff;
+      color: #111827;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color 0.15s;
+      appearance: auto;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #1a2744;
+      box-shadow: 0 0 0 3px rgba(26,39,68,0.08);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.65;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* Radio pill group */
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 400;
+      font-size: 14px;
+      cursor: pointer;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 8px 14px;
+      margin: 0;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .radio-group label:hover { border-color: #1a2744; background: #f0f4ff; }
+    .radio-group input[type=radio] { width: auto; accent-color: #1a2744; }
+
+    /* Conditional case sections */
+    .case-section {
+      display: none;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px dashed #e5e7eb;
+    }
+    .case-section.active { display: block; }
+
+    .case-section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: #1a2744;
+      background: rgba(26,39,68,0.07);
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Divider inside section */
+    .sub-divider {
+      border: none;
+      border-top: 1px solid #f0f0f0;
+      margin: 1.25rem 0;
+    }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #1a2744;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      letter-spacing: 0.2px;
+      transition: background 0.15s;
+    }
+    .submit-btn:hover { background: #243660; }
+    .submit-btn:active { background: #111b33; transform: scale(0.99); }
+
+    /* Footer note */
+    .confidential-note {
+      text-align: center;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 1rem;
+      line-height: 1.65;
+    }
+
+    /* Success banner */
+    .success-banner {
+      display: none;
+      background: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      color: #065f46;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 14px;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+    .success-banner.show { display: block; }
+
+    /* Responsive */
+    @media (max-width: 540px) {
+      .two-col { grid-template-columns: 1fr; }
+      .form-header { padding: 1.5rem 1.25rem; }
+      .section { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-wrap">
+
+  <!-- Header -->
+  <div class="form-header">
+    <div class="header-badge">Confidential &amp; Protected</div>
+    <h1>New Client Intake Form</h1>
+    <p>Please complete this form as fully as possible. All information you provide is confidential. If you are unsure of an answer, write "Unknown." A member of our legal team will contact you shortly after reviewing your submission.</p>
+  </div>
+
+  <form id="intakeForm" action="https://formspree.io/f/mnjoewnr" method="POST" novalidate>
+
+    <!-- Section 1: Contact -->
+    <div class="section">
+      <div class="section-title">Your Contact Information</div>
+
+      <div class="two-col">
+        <div class="field">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" name="full_name" placeholder="First and last name" required>
+        </div>
+        <div class="field">
+          <label>Phone Number <span class="req">*</span></label>
+          <input type="tel" name="phone" placeholder="(___) ___-____" required>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="your@email.com">
+        </div>
+        <div class="field">
+          <label>Best Way to Reach You <span class="req">*</span></label>
+          <select name="contact_method" required>
+            <option value="">-- Select --</option>
+            <option>Phone Call</option>
+            <option>Text Message</option>
+            <option>Email</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Case Type + Location + Conditional -->
+    <div class="section">
+      <div class="section-title">Case Type &amp; Location</div>
+
+      <div class="field">
+        <label>What kind of legal matter are you contacting us about? <span class="req">*</span><span class="hint">Choose the one that best fits</span></label>
+        <select name="case_type" id="caseType" required onchange="showCaseSection(this.value)">
+          <option value="">-- Select a case type --</option>
+          <option value="pi">Personal Injury — car accident, slip &amp; fall, dog bite, etc.</option>
+          <option value="cd">Criminal Defense — arrest, charges, warrants, DUI, etc.</option>
+          <option value="jd">Juvenile Dependency — CPS / DCFS investigation or removal</option>
+          <option value="ns">Not Sure</option>
+        </select>
+      </div>
+
+      <div class="two-col">
+        <div class="field">
+          <label>County where this happened <span class="req">*</span></label>
+          <select name="county" required>
+            <option value="">-- Select County --</option>
+            <option>Orange County</option>
+            <option>Riverside County</option>
+            <option>Los Angeles County</option>
+            <option>San Diego County</option>
+            <option>San Bernardino County</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>City where this happened <span class="req">*</span></label>
+          <input type="text" name="city" placeholder="e.g. Riverside, Anaheim, Pomona..." required>
+        </div>
+      </div>
+
+      <!-- ===== PERSONAL INJURY ===== -->
+      <div class="case-section" id="sec-pi">
+        <div class="case-section-label">Personal Injury Details</div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Date of Incident <span class="req">*</span></label>
+            <input type="date" name="pi_date">
+          </div>
+          <div class="field">
+            <label>Approximate Time of Incident</label>
+            <input type="time" name="pi_time">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Type of Accident <span class="req">*</span></label>
+          <select name="pi_type">
+            <option value="">-- Select --</option>
+            <option>Car Accident</option>
+            <option>Motorcycle Accident</option>
+            <option>Truck / Semi-Truck Accident</option>
+            <option>Uber / Lyft Accident</option>
+            <option>Pedestrian Struck by Vehicle</option>
+            <option>Slip and Fall / Trip and Fall</option>
+            <option>Dog Bite</option>
+            <option>Bicycle Accident</option>
+            <option>Workplace Injury</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Your role in the accident <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="pi_role" value="driver"> Driver</label>
+            <label><input type="radio" name="pi_role" value="passenger"> Passenger</label>
+            <label><input type="radio" name="pi_role" value="pedestrian"> Pedestrian</label>
+            <label><input type="radio" name="pi_role" value="cyclist"> Cyclist</label>
+            <label><input type="radio" name="pi_role" value="other"> Other</label>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Were you injured? <span class="req">*</span></label>
+            <select name="pi_injured">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Did you receive medical treatment?</label>
+            <select name="pi_treatment">
+              <option value="">--</option>
+              <option>Yes — ER / Hospital</option>
+              <option>Yes — Urgent Care</option>
+              <option>Yes — Primary Doctor</option>
+              <option>No — Not Yet</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>What body parts were injured?<span class="hint">List all that apply</span></label>
+          <input type="text" name="pi_injuries" placeholder="e.g. neck, back, shoulder, head...">
+        </div>
+
+        <div class="field">
+          <label>Where did you receive treatment?<span class="hint">Hospital name, clinic, doctor's office</span></label>
+          <input type="text" name="pi_treatment_location" placeholder="e.g. Riverside University Health, Kaiser...">
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Was there another vehicle involved?</label>
+            <select name="pi_other_vehicle">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Unknown</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Were there witnesses?</label>
+            <select name="pi_witnesses">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Unknown</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Was a police report filed?</label>
+            <select name="pi_police_report">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Unknown</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Do you have auto insurance?</label>
+            <select name="pi_insurance">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Unknown</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Insurance company name<span class="hint">Your insurance or the other driver's</span></label>
+          <input type="text" name="pi_insurance_co" placeholder="e.g. State Farm, AAA, Geico...">
+        </div>
+
+        <div class="field">
+          <label>Have you already spoken to or hired another attorney?</label>
+          <select name="pi_prior_attorney">
+            <option value="">--</option>
+            <option>Yes</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Tell us what happened in your own words <span class="req">*</span></label>
+          <textarea name="pi_description" placeholder="Describe the accident, how it happened, any injuries you have, treatment you've received, and any other details that are important..."></textarea>
+        </div>
+      </div>
+      <!-- END PI -->
+
+      <!-- ===== CRIMINAL DEFENSE ===== -->
+      <div class="case-section" id="sec-cd">
+        <div class="case-section-label">Criminal Defense Details</div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Date of Arrest or Incident</label>
+            <input type="date" name="cd_date">
+          </div>
+          <div class="field">
+            <label>What are the charges? <span class="req">*</span><span class="hint">As listed on your paperwork</span></label>
+            <input type="text" name="cd_charges" placeholder="e.g. DUI, possession, assault...">
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Is it a felony or misdemeanor?<span class="hint">Check your paperwork if unsure</span></label>
+            <select name="cd_charge_level">
+              <option value="">-- Not Sure --</option>
+              <option>Felony</option>
+              <option>Misdemeanor</option>
+              <option>Both (multiple charges)</option>
+              <option>Not Sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Are you currently in custody?</label>
+            <select name="cd_custody">
+              <option value="">--</option>
+              <option>Yes — Currently In Custody</option>
+              <option>No — Out of Custody / Released</option>
+              <option>Released on Bail / Bond</option>
+              <option>Not Sure</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Case Number<span class="hint">On your court papers, if available</span></label>
+            <input type="text" name="cd_case_no" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label>Next Court Date<span class="hint">If you have one scheduled</span></label>
+            <input type="date" name="cd_court_date">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Which court / jurisdiction?</label>
+          <select name="cd_court">
+            <option value="">-- Select if known --</option>
+            <option>Riverside Superior Court</option>
+            <option>Los Angeles Superior Court</option>
+            <option>Orange County Superior Court</option>
+            <option>San Bernardino Superior Court</option>
+            <option>San Diego Superior Court</option>
+            <option>Federal Court (U.S. District Court)</option>
+            <option>Other / Unknown</option>
+          </select>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Are you a U.S. Citizen? <span class="req">*</span><span class="hint">Important — charges can affect immigration status</span></label>
+            <select name="cd_citizen">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No — Permanent Resident (Green Card)</option>
+              <option>No — Visa Holder</option>
+              <option>No — Undocumented</option>
+              <option>Prefer Not to Say</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Do you have prior criminal history? <span class="req">*</span></label>
+            <select name="cd_prior">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Prior criminal history details<span class="hint">If yes, briefly describe</span></label>
+          <input type="text" name="cd_prior_detail" placeholder="e.g. prior DUI in 2018, misdemeanor battery...">
+        </div>
+
+        <div class="field">
+          <label>Have you already spoken to or hired another attorney?</label>
+          <select name="cd_prior_attorney">
+            <option value="">--</option>
+            <option>Yes — I have an attorney</option>
+            <option>No</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Tell us what happened in your own words <span class="req">*</span></label>
+          <textarea name="cd_description" placeholder="Describe the incident, what you were arrested or charged with, what happened at the scene, and any other important details..."></textarea>
+        </div>
+      </div>
+      <!-- END CD -->
+
+      <!-- ===== JUVENILE DEPENDENCY (CPS) ===== -->
+      <div class="case-section" id="sec-jd">
+        <div class="case-section-label">CPS / Juvenile Dependency Details</div>
+
+        <div class="field">
+          <label>Are your children currently removed from your home? <span class="req">*</span></label>
+          <select name="jd_removed">
+            <option value="">--</option>
+            <option>Yes — They have been removed</option>
+            <option>No — CPS is still investigating</option>
+            <option>No — I received a notice or referral only</option>
+            <option>I'm not sure what stage we are at</option>
+          </select>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>How many children are involved? <span class="req">*</span></label>
+            <input type="text" name="jd_num_children" placeholder="e.g. 2">
+          </div>
+          <div class="field">
+            <label>Ages of children <span class="req">*</span></label>
+            <input type="text" name="jd_ages" placeholder="e.g. 4, 7, 12">
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>When did CPS / DCFS first get involved?<span class="hint">Approximate is fine</span></label>
+            <input type="date" name="jd_start_date">
+          </div>
+          <div class="field">
+            <label>Reason given by CPS / DCFS <span class="req">*</span></label>
+            <select name="jd_reason">
+              <option value="">-- Select --</option>
+              <option>Neglect (food, shelter, supervision)</option>
+              <option>Physical Abuse Allegations</option>
+              <option>Sexual Abuse Allegations</option>
+              <option>Domestic Violence in the Home</option>
+              <option>Parent's Substance Use</option>
+              <option>Parent's Mental Health</option>
+              <option>Unsafe Living Conditions</option>
+              <option>Medical Neglect</option>
+              <option>Other</option>
+              <option>No Reason Given / I Don't Know</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Name of CPS / DCFS Social Worker<span class="hint">If you have it</span></label>
+            <input type="text" name="jd_sw_name" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label>Social Worker's Phone or Agency<span class="hint">If known</span></label>
+            <input type="text" name="jd_sw_contact" placeholder="Optional">
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Next court date<span class="hint">If there is one scheduled</span></label>
+            <input type="date" name="jd_court_date">
+          </div>
+          <div class="field">
+            <label>Is there already an open court case?</label>
+            <select name="jd_court_case">
+              <option value="">--</option>
+              <option>Yes — there is already a court case open</option>
+              <option>No — still in investigation phase</option>
+              <option>Not Sure</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Which court?<span class="hint">If you know</span></label>
+          <select name="jd_court_loc">
+            <option value="">-- Select if known --</option>
+            <option>Riverside Juvenile Court</option>
+            <option>Los Angeles Juvenile Court (Edmund D. Edelman)</option>
+            <option>Orange County Juvenile Court</option>
+            <option>San Bernardino Juvenile Court</option>
+            <option>San Diego Juvenile Court</option>
+            <option>Other / Unknown</option>
+          </select>
+        </div>
+
+        <div class="two-col">
+          <div class="field">
+            <label>Have you been asked to complete a case plan?</label>
+            <select name="jd_case_plan">
+              <option value="">--</option>
+              <option>Yes — I received a case plan</option>
+              <option>No</option>
+              <option>Not Sure</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Do you have any criminal history?</label>
+            <select name="jd_criminal">
+              <option value="">--</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Criminal history details<span class="hint">If yes, briefly describe</span></label>
+          <input type="text" name="jd_criminal_detail" placeholder="Optional">
+        </div>
+
+        <div class="field">
+          <label>Tell us your situation in your own words <span class="req">*</span></label>
+          <textarea name="jd_description" placeholder="Describe what CPS told you, what has happened so far, your living situation, and any concerns you have about your children or the case..."></textarea>
+        </div>
+      </div>
+      <!-- END JD -->
+
+    </div>
+    <!-- End Section 2 -->
+
+    <!-- Section 3: Final -->
+    <div class="section">
+      <div class="section-title">Final Questions</div>
+
+      <div class="field">
+        <label>Brief description of what happened <span class="req">*</span><span class="hint">In your own words — the more detail the better</span></label>
+        <textarea name="general_description" placeholder="Please describe your situation, what happened, and what kind of help you are looking for..." required style="min-height: 120px;"></textarea>
+      </div>
+
+      <div class="field">
+        <label>How did you hear about us?</label>
+        <select name="referral_source">
+          <option value="">-- Select --</option>
+          <option>Google Search</option>
+          <option>Referral from Friend or Family Member</option>
+          <option>Social Media (Instagram, Facebook, etc.)</option>
+          <option>Online Directory (Yelp, Avvo, Justia)</option>
+          <option>Previous Client / Returned Client</option>
+          <option>Community Event or Outreach</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Is there anything else you would like us to know?<span class="hint">Optional</span></label>
+        <textarea name="additional_info" placeholder="Any other details, questions, or concerns you'd like to share with our team..."></textarea>
+      </div>
+    </div>
+
+    <!-- Internal Staff Section (hidden from clients in production — style display:none or move to admin view) -->
+    <!--
+    <div class="section" style="border: 1px dashed #d1d5db; background: #fffbeb;">
+      <div class="section-title" style="color: #b45309;">Internal Use Only — Staff Fields</div>
+      <div class="two-col">
+        <div class="field">
+          <label>Case Priority</label>
+          <select name="staff_priority">
+            <option value="">--</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Assigned To</label>
+          <input type="text" name="staff_assigned" placeholder="Attorney / Paralegal name">
+        </div>
+      </div>
+      <div class="field">
+        <label>Follow-Up Date</label>
+        <input type="date" name="staff_followup">
+      </div>
+    </div>
+    -->
+
+    <button type="submit" class="submit-btn">Submit Intake Form &rarr;</button>
+
+    <div class="success-banner" id="successBanner">
+      &#10003; &nbsp; Your intake form has been submitted successfully. A member of our team will review your information and contact you shortly. If this is an urgent matter, please call us directly at <strong>(866) 811-4255</strong>.
+    </div>
+
+    <p class="confidential-note">
+      All information submitted through this form is strictly confidential and protected by attorney-client privilege.<br>
+      Submission of this form does not establish an attorney-client relationship.
+    </p>
+
+  </form>
+</div>
+
+<script>
+  function showCaseSection(val) {
+    ['pi', 'cd', 'jd'].forEach(function(s) {
+      var el = document.getElementById('sec-' + s);
+      if (el) el.classList.toggle('active', s === val);
+    });
+  }
+
+  document.getElementById('intakeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Client-side required field validation
+    var required = this.querySelectorAll('[required]');
+    var valid = true;
+    required.forEach(function(field) {
+      if (!field.value.trim()) {
+        field.style.borderColor = '#c0392b';
+        valid = false;
+      } else {
+        field.style.borderColor = '';
+      }
+    });
+
+    if (!valid) {
+      alert('Please fill in all required fields marked with *');
+      return;
+    }
+
+    var form = this;
+    var btn = form.querySelector('.submit-btn');
+    btn.textContent = 'Submitting…';
+    btn.disabled = true;
+
+    var data = new FormData(form);
+
+    fetch('https://formspree.io/f/mnjoewnr', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        // Show success banner
+        var banner = document.getElementById('successBanner');
+        banner.classList.add('show');
+        window.scrollTo({ top: banner.offsetTop - 20, behavior: 'smooth' });
+        // Disable all fields
+        form.querySelectorAll('input, select, textarea, button').forEach(function(el) {
+          el.disabled = true;
+        });
+      } else {
+        return response.json().then(function(data) {
+          var msg = (data && data.errors) ? data.errors.map(function(e){ return e.message; }).join(', ') : 'Submission failed. Please try again or call us at (866) 811-4255.';
+          alert(msg);
+          btn.textContent = 'Submit Intake Form →';
+          btn.disabled = false;
+        });
+      }
+    })
+    .catch(function() {
+      alert('Network error. Please check your connection and try again, or call us at (866) 811-4255.');
+      btn.textContent = 'Submit Intake Form →';
+      btn.disabled = false;
+    });
+  });
+</script>
+
+</body>
+</html>
