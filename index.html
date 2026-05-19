@@ -740,11 +740,11 @@
       </div>
     </div>
 
-    <button type="submit" class="submit-btn">Submit Intake Form &rarr;</button>
+    <!-- Formspree redirect after submission -->
+    <input type="hidden" name="_next" value="https://allintakeform.com/thank-you.html">
+    <input type="hidden" name="_subject" value="New Client Intake Submission">
 
-    <div class="success-banner" id="successBanner">
-      &#10003; &nbsp; Thank you for trusting us with your case information. A lawyer from our office will give you a call shortly.
-    </div>
+    <button type="submit" class="submit-btn">Submit Intake Form &rarr;</button>
 
     <p class="confidential-note">
       All information submitted through this form is strictly confidential and protected by attorney-client privilege.<br>
@@ -768,9 +768,7 @@
   }
 
   document.getElementById('intakeForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Client-side required field validation
+    // Validate required fields
     var required = this.querySelectorAll('[required]');
     var valid = true;
     required.forEach(function(field) {
@@ -781,54 +779,18 @@
         field.style.borderColor = '';
       }
     });
-
     if (!valid) {
+      e.preventDefault();
       alert('Please fill in all required fields marked with *');
       return;
     }
 
-    var form = this;
-    var btn = form.querySelector('.submit-btn');
-    btn.textContent = 'Submitting…';
-    btn.disabled = true;
-
-    // Build FormData but skip any empty fields so email is clean
-    var rawData = new FormData(form);
-    var data = new FormData();
-    rawData.forEach(function(value, key) {
-      if (value && value.toString().trim() !== '') {
-        data.append(key, value);
+    // Disable all empty fields so they are not sent to Formspree
+    var allFields = this.querySelectorAll('input, select, textarea');
+    allFields.forEach(function(field) {
+      if (!field.value || field.value.trim() === '') {
+        field.disabled = true;
       }
-    });
-
-    fetch('https://formspree.io/f/xaqknbyz', {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        // Show success banner
-        var banner = document.getElementById('successBanner');
-        banner.classList.add('show');
-        window.scrollTo({ top: banner.offsetTop - 20, behavior: 'smooth' });
-        // Disable all fields
-        form.querySelectorAll('input, select, textarea, button').forEach(function(el) {
-          el.disabled = true;
-        });
-      } else {
-        return response.json().then(function(data) {
-          var msg = (data && data.errors) ? data.errors.map(function(e){ return e.message; }).join(', ') : 'Submission failed. Please try again or call us at (866) 811-4255.';
-          alert(msg);
-          btn.textContent = 'Submit Intake Form →';
-          btn.disabled = false;
-        });
-      }
-    })
-    .catch(function() {
-      alert('Network error. Please check your connection and try again, or call us at (866) 811-4255.');
-      btn.textContent = 'Submit Intake Form →';
-      btn.disabled = false;
     });
   });
 </script>
