@@ -31,13 +31,15 @@
     }
     .header-badge {
       display: inline-block;
-      background: rgba(255,255,255,0.15);
+      background: #f97316;
+      color: #fff;
       font-size: 11px;
       letter-spacing: 0.8px;
       text-transform: uppercase;
       padding: 3px 10px;
       border-radius: 4px;
       margin-bottom: 0.75rem;
+      font-weight: 600;
     }
     .form-header h1 {
       font-size: 24px;
@@ -183,7 +185,7 @@
     .submit-btn {
       width: 100%;
       padding: 14px;
-      background: #1a2744;
+      background: #f97316;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -194,8 +196,8 @@
       letter-spacing: 0.2px;
       transition: background 0.15s;
     }
-    .submit-btn:hover { background: #243660; }
-    .submit-btn:active { background: #111b33; transform: scale(0.99); }
+    .submit-btn:hover { background: #ea580c; }
+    .submit-btn:active { background: #c2410c; transform: scale(0.99); }
 
     /* Footer note */
     .confidential-note {
@@ -785,9 +787,21 @@
       return;
     }
 
-    // Disable all empty fields so they are not sent to Formspree
+    // Strip blank fields so the Formspree email only contains filled-in data
     var allFields = this.querySelectorAll('input, select, textarea');
     allFields.forEach(function(field) {
+      // Skip the submit button
+      if (field.type === 'submit') return;
+
+      // For radios and checkboxes: disable if not checked
+      if (field.type === 'radio' || field.type === 'checkbox') {
+        if (!field.checked) {
+          field.disabled = true;
+        }
+        return;
+      }
+
+      // For text/select/textarea: disable if empty
       if (!field.value || field.value.trim() === '') {
         field.disabled = true;
       }
