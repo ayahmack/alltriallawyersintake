@@ -31,15 +31,13 @@
     }
     .header-badge {
       display: inline-block;
-      background: #f97316;
-      color: #fff;
+      background: rgba(255,255,255,0.15);
       font-size: 11px;
       letter-spacing: 0.8px;
       text-transform: uppercase;
       padding: 3px 10px;
       border-radius: 4px;
       margin-bottom: 0.75rem;
-      font-weight: 600;
     }
     .form-header h1 {
       font-size: 24px;
@@ -185,7 +183,7 @@
     .submit-btn {
       width: 100%;
       padding: 14px;
-      background: #f97316;
+      background: #1a2744;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -196,8 +194,8 @@
       letter-spacing: 0.2px;
       transition: background 0.15s;
     }
-    .submit-btn:hover { background: #ea580c; }
-    .submit-btn:active { background: #c2410c; transform: scale(0.99); }
+    .submit-btn:hover { background: #243660; }
+    .submit-btn:active { background: #111b33; transform: scale(0.99); }
 
     /* Footer note */
     .confidential-note {
@@ -250,22 +248,22 @@
       <div class="two-col">
         <div class="field">
           <label>Full Name <span class="req">*</span></label>
-          <input type="text" name="full_name" placeholder="First and last name" required>
+          <input type="text" name="Full Name" placeholder="First and last name" required>
         </div>
         <div class="field">
           <label>Phone Number <span class="req">*</span></label>
-          <input type="tel" name="phone" placeholder="(___) ___-____" required>
+          <input type="tel" name="Phone" placeholder="(___) ___-____" required>
         </div>
       </div>
 
       <div class="two-col">
         <div class="field">
           <label>Email Address</label>
-          <input type="email" name="email" placeholder="your@email.com">
+          <input type="email" name="Email" placeholder="your@email.com">
         </div>
         <div class="field">
           <label>Best Way to Reach You <span class="req">*</span></label>
-          <select name="contact_method" required>
+          <select name="Best Way to Reach You" required>
             <option value="">-- Select --</option>
             <option>Phone Call</option>
             <option>Text Message</option>
@@ -281,7 +279,7 @@
 
       <div class="field">
         <label>What kind of legal matter are you contacting us about? <span class="req">*</span><span class="hint">Choose the one that best fits</span></label>
-        <select name="case_type" id="caseType" required onchange="showCaseSection(this.value)">
+        <select name="Case Type" id="caseType" required onchange="showCaseSection(this.value)">
           <option value="">-- Select a case type --</option>
           <option value="pi">Personal Injury — car accident, slip &amp; fall, dog bite, etc.</option>
           <option value="cd">Criminal Defense — arrest, charges, warrants, DUI, etc.</option>
@@ -293,7 +291,7 @@
       <div class="two-col">
         <div class="field">
           <label>County where this happened <span class="req">*</span></label>
-          <select name="county" required>
+          <select name="County" required>
             <option value="">-- Select County --</option>
             <option>Orange County</option>
             <option>Riverside County</option>
@@ -305,7 +303,7 @@
         </div>
         <div class="field">
           <label>City where this happened <span class="req">*</span></label>
-          <input type="text" name="city" placeholder="e.g. Riverside, Anaheim, Pomona..." required>
+          <input type="text" name="City" placeholder="e.g. Riverside, Anaheim, Pomona..." required>
         </div>
       </div>
 
@@ -316,17 +314,17 @@
         <div class="two-col">
           <div class="field">
             <label>Date of Incident <span class="req">*</span></label>
-            <input type="date" name="pi_date">
+            <input type="date" name="PI — Date of Incident">
           </div>
           <div class="field">
             <label>Approximate Time of Incident</label>
-            <input type="time" name="pi_time">
+            <input type="time" name="PI — Time of Incident">
           </div>
         </div>
 
         <div class="field">
           <label>Type of Accident <span class="req">*</span></label>
-          <select name="pi_type">
+          <select name="PI — Type of Accident">
             <option value="">-- Select --</option>
             <option>Car Accident</option>
             <option>Motorcycle Accident</option>
@@ -344,18 +342,18 @@
         <div class="field">
           <label>Your role in the accident <span class="req">*</span></label>
           <div class="radio-group">
-            <label><input type="radio" name="pi_role" value="driver"> Driver</label>
-            <label><input type="radio" name="pi_role" value="passenger"> Passenger</label>
-            <label><input type="radio" name="pi_role" value="pedestrian"> Pedestrian</label>
-            <label><input type="radio" name="pi_role" value="cyclist"> Cyclist</label>
-            <label><input type="radio" name="pi_role" value="other"> Other</label>
+            <label><input type="radio" name="PI — Role in Accident" value="driver"> Driver</label>
+            <label><input type="radio" name="PI — Role in Accident" value="passenger"> Passenger</label>
+            <label><input type="radio" name="PI — Role in Accident" value="pedestrian"> Pedestrian</label>
+            <label><input type="radio" name="PI — Role in Accident" value="cyclist"> Cyclist</label>
+            <label><input type="radio" name="PI — Role in Accident" value="other"> Other</label>
           </div>
         </div>
 
         <div class="two-col">
           <div class="field">
             <label>Were you injured? <span class="req">*</span></label>
-            <select name="pi_injured">
+            <select name="PI — Were You Injured">
               <option value="">--</option>
               <option>Yes</option>
               <option>No</option>
@@ -363,7 +361,7 @@
           </div>
           <div class="field">
             <label>Did you receive medical treatment?</label>
-            <select name="pi_treatment">
+            <select name="PI — Medical Treatment">
               <option value="">--</option>
               <option>Yes — ER / Hospital</option>
               <option>Yes — Urgent Care</option>
@@ -376,18 +374,18 @@
 
         <div class="field">
           <label>What body parts were injured?<span class="hint">List all that apply</span></label>
-          <input type="text" name="pi_injuries" placeholder="e.g. neck, back, shoulder, head...">
+          <input type="text" name="PI — Body Parts Injured" placeholder="e.g. neck, back, shoulder, head...">
         </div>
 
         <div class="field">
           <label>Where did you receive treatment?<span class="hint">Hospital name, clinic, doctor's office</span></label>
-          <input type="text" name="pi_treatment_location" placeholder="e.g. Riverside University Health, Kaiser...">
+          <input type="text" name="PI — Where Treated" placeholder="e.g. Riverside University Health, Kaiser...">
         </div>
 
         <div class="two-col">
           <div class="field">
             <label>Was there another vehicle involved?</label>
-            <select name="pi_other_vehicle">
+            <select name="PI — Other Vehicle Involved">
               <option value="">--</option>
               <option>Yes</option>
               <option>No</option>
@@ -396,7 +394,7 @@
           </div>
           <div class="field">
             <label>Were there witnesses?</label>
-            <select name="pi_witnesses">
+            <select name="PI — Witnesses">
               <option value="">--</option>
               <option>Yes</option>
               <option>No</option>
@@ -408,7 +406,7 @@
         <div class="two-col">
           <div class="field">
             <label>Was a police report filed?</label>
-            <select name="pi_police_report">
+            <select name="PI — Police Report Filed">
               <option value="">--</option>
               <option>Yes</option>
               <option>No</option>
@@ -417,7 +415,7 @@
           </div>
           <div class="field">
             <label>Do you have auto insurance?</label>
-            <select name="pi_insurance">
+            <select name="PI — Auto Insurance">
               <option value="">--</option>
               <option>Yes</option>
               <option>No</option>
@@ -428,12 +426,12 @@
 
         <div class="field">
           <label>Insurance company name<span class="hint">Your insurance or the other driver's</span></label>
-          <input type="text" name="pi_insurance_co" placeholder="e.g. State Farm, AAA, Geico...">
+          <input type="text" name="PI — Insurance Company" placeholder="e.g. State Farm, AAA, Geico...">
         </div>
 
         <div class="field">
           <label>Have you already spoken to or hired another attorney?</label>
-          <select name="pi_prior_attorney">
+          <select name="PI — Prior Attorney">
             <option value="">--</option>
             <option>Yes</option>
             <option>No</option>
@@ -442,7 +440,7 @@
 
         <div class="field">
           <label>Tell us what happened in your own words <span class="req">*</span></label>
-          <textarea name="pi_description" placeholder="Describe the accident, how it happened, any injuries you have, treatment you've received, and any other details that are important..."></textarea>
+          <textarea name="PI — What Happened" placeholder="Describe the accident, how it happened, any injuries you have, treatment you've received, and any other details that are important..."></textarea>
         </div>
       </div>
       <!-- END PI -->
@@ -454,18 +452,18 @@
         <div class="two-col">
           <div class="field">
             <label>Date of Arrest or Incident</label>
-            <input type="date" name="cd_date">
+            <input type="date" name="CD — Date of Arrest or Incident">
           </div>
           <div class="field">
             <label>What are the charges? <span class="req">*</span><span class="hint">As listed on your paperwork</span></label>
-            <input type="text" name="cd_charges" placeholder="e.g. DUI, possession, assault...">
+            <input type="text" name="CD — Charges" placeholder="e.g. DUI, possession, assault...">
           </div>
         </div>
 
         <div class="two-col">
           <div class="field">
             <label>Is it a felony or misdemeanor?<span class="hint">Check your paperwork if unsure</span></label>
-            <select name="cd_charge_level">
+            <select name="CD — Felony or Misdemeanor">
               <option value="">-- Not Sure --</option>
               <option>Felony</option>
               <option>Misdemeanor</option>
@@ -475,7 +473,7 @@
           </div>
           <div class="field">
             <label>Are you currently in custody?</label>
-            <select name="cd_custody">
+            <select name="CD — Currently in Custody">
               <option value="">--</option>
               <option>Yes — Currently In Custody</option>
               <option>No — Out of Custody / Released</option>
@@ -488,17 +486,17 @@
         <div class="two-col">
           <div class="field">
             <label>Case Number<span class="hint">On your court papers, if available</span></label>
-            <input type="text" name="cd_case_no" placeholder="Optional">
+            <input type="text" name="CD — Case Number" placeholder="Optional">
           </div>
           <div class="field">
             <label>Next Court Date<span class="hint">If you have one scheduled</span></label>
-            <input type="date" name="cd_court_date">
+            <input type="date" name="CD — Next Court Date">
           </div>
         </div>
 
         <div class="field">
           <label>Which court / jurisdiction?</label>
-          <select name="cd_court">
+          <select name="CD — Court / Jurisdiction">
             <option value="">-- Select if known --</option>
             <option>Riverside Superior Court</option>
             <option>Los Angeles Superior Court</option>
@@ -513,7 +511,7 @@
         <div class="two-col">
           <div class="field">
             <label>Are you a U.S. Citizen? <span class="req">*</span><span class="hint">Important — charges can affect immigration status</span></label>
-            <select name="cd_citizen">
+            <select name="CD — U.S. Citizen">
               <option value="">--</option>
               <option>Yes</option>
               <option>No — Permanent Resident (Green Card)</option>
@@ -524,7 +522,7 @@
           </div>
           <div class="field">
             <label>Do you have prior criminal history? <span class="req">*</span></label>
-            <select name="cd_prior">
+            <select name="CD — Prior Criminal History">
               <option value="">--</option>
               <option>Yes</option>
               <option>No</option>
@@ -534,12 +532,12 @@
 
         <div class="field">
           <label>Prior criminal history details<span class="hint">If yes, briefly describe</span></label>
-          <input type="text" name="cd_prior_detail" placeholder="e.g. prior DUI in 2018, misdemeanor battery...">
+          <input type="text" name="CD — Prior History Details" placeholder="e.g. prior DUI in 2018, misdemeanor battery...">
         </div>
 
         <div class="field">
           <label>Have you already spoken to or hired another attorney?</label>
-          <select name="cd_prior_attorney">
+          <select name="CD — Prior Attorney">
             <option value="">--</option>
             <option>Yes — I have an attorney</option>
             <option>No</option>
@@ -548,7 +546,7 @@
 
         <div class="field">
           <label>Tell us what happened in your own words <span class="req">*</span></label>
-          <textarea name="cd_description" placeholder="Describe the incident, what you were arrested or charged with, what happened at the scene, and any other important details..."></textarea>
+          <textarea name="CD — What Happened" placeholder="Describe the incident, what you were arrested or charged with, what happened at the scene, and any other important details..."></textarea>
         </div>
       </div>
       <!-- END CD -->
@@ -559,7 +557,7 @@
 
         <div class="field">
           <label>Are your children currently removed from your home? <span class="req">*</span></label>
-          <select name="jd_removed">
+          <select name="CPS — Children Removed">
             <option value="">--</option>
             <option>Yes — They have been removed</option>
             <option>No — CPS is still investigating</option>
@@ -571,22 +569,22 @@
         <div class="two-col">
           <div class="field">
             <label>How many children are involved? <span class="req">*</span></label>
-            <input type="text" name="jd_num_children" placeholder="e.g. 2">
+            <input type="text" name="CPS — Number of Children" placeholder="e.g. 2">
           </div>
           <div class="field">
             <label>Ages of children <span class="req">*</span></label>
-            <input type="text" name="jd_ages" placeholder="e.g. 4, 7, 12">
+            <input type="text" name="CPS — Ages of Children" placeholder="e.g. 4, 7, 12">
           </div>
         </div>
 
         <div class="two-col">
           <div class="field">
             <label>When did CPS / DCFS first get involved?<span class="hint">Approximate is fine</span></label>
-            <input type="date" name="jd_start_date">
+            <input type="date" name="CPS — When CPS Got Involved">
           </div>
           <div class="field">
             <label>Reason given by CPS / DCFS <span class="req">*</span></label>
-            <select name="jd_reason">
+            <select name="CPS — Reason Given by CPS">
               <option value="">-- Select --</option>
               <option>Neglect (food, shelter, supervision)</option>
               <option>Physical Abuse Allegations</option>
@@ -605,22 +603,22 @@
         <div class="two-col">
           <div class="field">
             <label>Name of CPS / DCFS Social Worker<span class="hint">If you have it</span></label>
-            <input type="text" name="jd_sw_name" placeholder="Optional">
+            <input type="text" name="CPS — Social Worker Name" placeholder="Optional">
           </div>
           <div class="field">
             <label>Social Worker's Phone or Agency<span class="hint">If known</span></label>
-            <input type="text" name="jd_sw_contact" placeholder="Optional">
+            <input type="text" name="CPS — Social Worker Contact" placeholder="Optional">
           </div>
         </div>
 
         <div class="two-col">
           <div class="field">
             <label>Next court date<span class="hint">If there is one scheduled</span></label>
-            <input type="date" name="jd_court_date">
+            <input type="date" name="CPS — Next Court Date">
           </div>
           <div class="field">
             <label>Is there already an open court case?</label>
-            <select name="jd_court_case">
+            <select name="CPS — Open Court Case">
               <option value="">--</option>
               <option>Yes — there is already a court case open</option>
               <option>No — still in investigation phase</option>
@@ -631,7 +629,7 @@
 
         <div class="field">
           <label>Which court?<span class="hint">If you know</span></label>
-          <select name="jd_court_loc">
+          <select name="CPS — Which Court">
             <option value="">-- Select if known --</option>
             <option>Riverside Juvenile Court</option>
             <option>Los Angeles Juvenile Court (Edmund D. Edelman)</option>
@@ -645,7 +643,7 @@
         <div class="two-col">
           <div class="field">
             <label>Have you been asked to complete a case plan?</label>
-            <select name="jd_case_plan">
+            <select name="CPS — Case Plan">
               <option value="">--</option>
               <option>Yes — I received a case plan</option>
               <option>No</option>
@@ -654,7 +652,7 @@
           </div>
           <div class="field">
             <label>Do you have any criminal history?</label>
-            <select name="jd_criminal">
+            <select name="CPS — Criminal History">
               <option value="">--</option>
               <option>Yes</option>
               <option>No</option>
@@ -664,12 +662,12 @@
 
         <div class="field">
           <label>Criminal history details<span class="hint">If yes, briefly describe</span></label>
-          <input type="text" name="jd_criminal_detail" placeholder="Optional">
+          <input type="text" name="CPS — Criminal History Details" placeholder="Optional">
         </div>
 
         <div class="field">
           <label>Tell us your situation in your own words <span class="req">*</span></label>
-          <textarea name="jd_description" placeholder="Describe what CPS told you, what has happened so far, your living situation, and any concerns you have about your children or the case..."></textarea>
+          <textarea name="CPS — Situation Description" placeholder="Describe what CPS told you, what has happened so far, your living situation, and any concerns you have about your children or the case..."></textarea>
         </div>
       </div>
       <!-- END JD -->
@@ -683,12 +681,12 @@
 
       <div class="field">
         <label>Brief description of what happened <span class="req">*</span><span class="hint">In your own words — the more detail the better</span></label>
-        <textarea name="general_description" placeholder="Please describe your situation, what happened, and what kind of help you are looking for..." required style="min-height: 120px;"></textarea>
+        <textarea name="Brief Description of What Happened" placeholder="Please describe your situation, what happened, and what kind of help you are looking for..." required style="min-height: 120px;"></textarea>
       </div>
 
       <div class="field">
         <label>How did you hear about us?</label>
-        <select name="referral_source">
+        <select name="How Did You Hear About Us">
           <option value="">-- Select --</option>
           <option>Google Search</option>
           <option>Referral from Friend or Family Member</option>
@@ -702,7 +700,7 @@
 
       <div class="field">
         <label>Is there anything else you would like us to know?<span class="hint">Optional</span></label>
-        <textarea name="additional_info" placeholder="Any other details, questions, or concerns you'd like to share with our team..."></textarea>
+        <textarea name="Additional Information" placeholder="Any other details, questions, or concerns you'd like to share with our team..."></textarea>
       </div>
     </div>
 
@@ -712,7 +710,7 @@
       <div class="two-col">
         <div class="field">
           <label style="color: #92400e;">Case Priority</label>
-          <select name="staff_priority">
+          <select name="STAFF — Case Priority">
             <option value="">--</option>
             <option>High</option>
             <option>Medium</option>
@@ -721,16 +719,16 @@
         </div>
         <div class="field">
           <label style="color: #92400e;">Assigned To</label>
-          <input type="text" name="staff_assigned" placeholder="Attorney / Paralegal name">
+          <input type="text" name="STAFF — Assigned To" placeholder="Attorney / Paralegal name">
         </div>
       </div>
       <div class="field">
         <label style="color: #92400e;">Follow-Up Date</label>
-        <input type="date" name="staff_followup">
+        <input type="date" name="STAFF — Follow-Up Date">
       </div>
       <div class="field">
         <label style="color: #92400e;">Was the client quoted a fee?</label>
-        <select name="staff_quoted" id="staffQuoted" onchange="toggleQuoteAmount(this.value)">
+        <select name="STAFF — Client Quoted" id="staffQuoted" onchange="toggleQuoteAmount(this.value)">
           <option value="">--</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
@@ -738,7 +736,7 @@
       </div>
       <div class="field" id="quoteAmountField" style="display:none;">
         <label style="color: #92400e;">Amount quoted to client</label>
-        <input type="text" name="staff_quote_amount" placeholder="e.g. $2,500 flat fee, $500 retainer...">
+        <input type="text" name="STAFF — Amount Quoted" placeholder="e.g. $2,500 flat fee, $500 retainer...">
       </div>
     </div>
 
@@ -787,21 +785,9 @@
       return;
     }
 
-    // Strip blank fields so the Formspree email only contains filled-in data
+    // Disable all empty fields so they are not sent to Formspree
     var allFields = this.querySelectorAll('input, select, textarea');
     allFields.forEach(function(field) {
-      // Skip the submit button
-      if (field.type === 'submit') return;
-
-      // For radios and checkboxes: disable if not checked
-      if (field.type === 'radio' || field.type === 'checkbox') {
-        if (!field.checked) {
-          field.disabled = true;
-        }
-        return;
-      }
-
-      // For text/select/textarea: disable if empty
       if (!field.value || field.value.trim() === '') {
         field.disabled = true;
       }
